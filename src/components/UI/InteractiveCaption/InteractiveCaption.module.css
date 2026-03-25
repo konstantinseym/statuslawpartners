@@ -5,6 +5,7 @@
   padding: 0 8px;
   border-radius: 4px;
   transition: var(--transition);
+  z-index: 0;
 }
 .interactivecaption:hover {
   cursor: pointer;

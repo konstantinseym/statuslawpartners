@@ -3,7 +3,6 @@ import Hero from "./components/Hero/Hero.jsx";
 import MainLayout from "./components/MainLayout/MainLayout.jsx";
 import Ftr from "./components/Ftr/Ftr.jsx";
 
-
 export default function App() {
   return (
     <motion.div
