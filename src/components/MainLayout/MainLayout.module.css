@@ -12,3 +12,17 @@
   flex-direction: column;
   gap: 64px;
 }
+.mainlayout__arrowupbtn {
+  cursor: pointer;
+  width: 38px;
+  height: auto;
+  fill: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  bottom: 32px;
+  right: 40px;
+  transition: var(--transition);
+}
+.mainlayout__arrowupbtn:hover {
+  fill: rgb(0, 0, 0);
+  scale: 1.1;
+}
