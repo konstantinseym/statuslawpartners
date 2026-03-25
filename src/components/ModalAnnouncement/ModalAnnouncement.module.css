@@ -10,13 +10,15 @@
 }
 .modalannouncement__closebtn {
   width: 38px;
-  top: 38px;
-  right: 38px;
+  top: 32px;
+  right: 40px;
+  fill: rgba(0, 0, 0, 0.5);
   cursor: pointer;
   position: absolute;
   transition: var(--transition);
 }
 .modalannouncement__closebtn:hover {
+  fill: rgb(0, 0, 0);
   scale: 1.1;
 }
 .modalannouncement__container {

@@ -15,6 +15,7 @@
 }
 .employees__employeecard:hover {
   filter: grayscale(0);
+  scale: 1.01;
 }
 .employees__employeecard::after {
   content: "";

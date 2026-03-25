@@ -2,6 +2,7 @@ import styles from "./MainLayout.module.css";
 import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import FadeInBlock from "../FadeInBlock/FadeInBlock.jsx";
 import Caption from "../UI/Caption/Caption.jsx";
 import Announcements from "../Announcements/Announcements.jsx";
 import Employees from "../Employees/Employees.jsx";
@@ -30,22 +31,30 @@ export default function MainLayout() {
   return (
     <>
       <main className={styles.mainlayout}>
-        <div className={styles.mainlayout__block}>
-          <Caption>Объявления</Caption>
-          <Announcements />
-        </div>
-        <div className={styles.mainlayout__block}>
-          <Caption>Адвокаты</Caption>
-          <Employees />
-        </div>
-        <div className={styles.mainlayout__block}>
-          <Caption>Реквизиты</Caption>
-          <Details />
-        </div>
-        <div className={styles.mainlayout__block}>
-          <Caption>Контакты</Caption>
-          <Contacts />
-        </div>
+        <FadeInBlock>
+          <div className={styles.mainlayout__block}>
+            <Caption>Объявления</Caption>
+            <Announcements />
+          </div>
+        </FadeInBlock>
+        <FadeInBlock>
+          <div className={styles.mainlayout__block}>
+            <Caption>Адвокаты</Caption>
+            <Employees />
+          </div>
+        </FadeInBlock>
+        <FadeInBlock>
+          <div className={styles.mainlayout__block}>
+            <Caption>Реквизиты</Caption>
+            <Details />
+          </div>
+        </FadeInBlock>
+        <FadeInBlock>
+          <div className={styles.mainlayout__block}>
+            <Caption>Контакты</Caption>
+            <Contacts />
+          </div>
+        </FadeInBlock>
       </main>
 
       {createPortal(
