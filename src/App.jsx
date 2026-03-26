@@ -90,8 +90,8 @@ export default function App() {
         heroMajor={appData.captions.heroMajor}
         heroMinor={appData.captions.heroMinor}
         heroButtons={[
-          appData.captions.newsCaption,
-          appData.captions.contactsCaption,
+          appData.captions.employeesCaption,
+          appData.captions.detailsCaption,
         ]}
       />
       <MainLayout

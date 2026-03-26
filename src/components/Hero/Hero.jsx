@@ -56,10 +56,10 @@ export default function Hero({ heroMajor, heroMinor, heroButtons }) {
 
         <nav className={styles.hero__navcontainer}>
           <motion.div variants={childrenVariants}>
-            <Button>{heroButtons[0]}</Button>
+            <Button onClick={() => document.querySelector("#employeesBlock").scrollIntoView()}>{heroButtons[0]}</Button>
           </motion.div>
           <motion.div variants={childrenVariants}>
-            <Button>{heroButtons[1]}</Button>
+            <Button onClick={() => document.querySelector("#detailsBlock").scrollIntoView()}>{heroButtons[1]}</Button>
           </motion.div>
         </nav>
         <motion.svg

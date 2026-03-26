@@ -47,13 +47,13 @@ export default function MainLayout({
           </div>
         </FadeInBlock>
         <FadeInBlock>
-          <div className={styles.mainlayout__block}>
+          <div id="employeesBlock" className={styles.mainlayout__block}>
             <Caption>{mainLayoutEmployeesCaption}</Caption>
             <Employees employees={employees} />
           </div>
         </FadeInBlock>
         <FadeInBlock>
-          <div className={styles.mainlayout__block}>
+          <div id="detailsBlock" className={styles.mainlayout__block}>
             <Caption>{mainLayoutDetailsCaption}</Caption>
             <Details details={details} />
           </div>
