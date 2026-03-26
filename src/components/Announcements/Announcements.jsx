@@ -3,21 +3,7 @@ import InteractiveCaption from "../UI/InteractiveCaption/InteractiveCaption.jsx"
 import ModalAnnouncement from "../ModalAnnouncement/ModalAnnouncement.jsx";
 import { useState } from "react";
 
-export default function Announcements() {
-  const announcements = [
-    {
-      id: 1,
-      date: "13.01.2025, 14:57",
-      title: "Коллегия предупреждает об участившихся случаях мошенничества",
-      content: "Content of the news number 1 Telegin Телегин",
-    },
-    {
-      id: 2,
-      date: "13.01.2025, 14:57",
-      title: "У нас новый сайт",
-      content: "У нас новый сайт",
-    },
-  ];
+export default function Announcements({ news }) {
 
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
 
@@ -40,15 +26,15 @@ export default function Announcements() {
         data={selectedAnnouncement}
       />
 
-      {announcements.map((announcement) => (
+      {news.map((newsItem) => (
         <InteractiveCaption
-          key={announcement.id}
+          key={newsItem.id}
           onClick={() => {
-            setSelectedAnnouncement(announcement);
+            setSelectedAnnouncement(newsItem);
             showModalAnnouncements();
           }}
         >
-          {announcement.date} | {announcement.title}
+          {newsItem.date} | {newsItem.title}
         </InteractiveCaption>
       ))}
     </div>

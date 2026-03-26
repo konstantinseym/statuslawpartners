@@ -9,7 +9,16 @@ import Employees from "../Employees/Employees.jsx";
 import Details from "../Details/Details.jsx";
 import Contacts from "../Contacts/Contacts.jsx";
 
-export default function MainLayout() {
+export default function MainLayout({
+  mainLayoutNewsCaption,
+  mainLayoutEmployeesCaption,
+  mainLayoutDetailsCaption,
+  mainLayoutContactsCaption,
+  news,
+  employees,
+  details,
+  contacts,
+}) {
   const [isScrolled, setIsScrolled] = useState(false);
 
   function scrollToTop() {
@@ -33,26 +42,26 @@ export default function MainLayout() {
       <main className={styles.mainlayout}>
         <FadeInBlock>
           <div className={styles.mainlayout__block}>
-            <Caption>Объявления</Caption>
-            <Announcements />
+            <Caption>{mainLayoutNewsCaption}</Caption>
+            <Announcements news={news} />
           </div>
         </FadeInBlock>
         <FadeInBlock>
           <div className={styles.mainlayout__block}>
-            <Caption>Адвокаты</Caption>
-            <Employees />
+            <Caption>{mainLayoutEmployeesCaption}</Caption>
+            <Employees employees={employees} />
           </div>
         </FadeInBlock>
         <FadeInBlock>
           <div className={styles.mainlayout__block}>
-            <Caption>Реквизиты</Caption>
-            <Details />
+            <Caption>{mainLayoutDetailsCaption}</Caption>
+            <Details details={details} />
           </div>
         </FadeInBlock>
         <FadeInBlock>
           <div className={styles.mainlayout__block}>
-            <Caption>Контакты</Caption>
-            <Contacts />
+            <Caption>{mainLayoutContactsCaption}</Caption>
+            <Contacts contacts={contacts} />
           </div>
         </FadeInBlock>
       </main>

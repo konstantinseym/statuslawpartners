@@ -4,7 +4,7 @@ import TextLine from "../UI/TextLine/TextLine.jsx";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 
-export default function Hero() {
+export default function Hero({ heroMajor, heroMinor, heroButtons }) {
   const containerVariants = {
     hidden: {},
     visible: { transition: { staggerChildren: 0.33 } },
@@ -48,21 +48,18 @@ export default function Hero() {
         animate="visible"
       >
         <motion.h1 className={styles.hero__caption} variants={childrenVariants}>
-          Юридическое партнерство{<br />}"СТАТУС"
+          {heroMajor}
         </motion.h1>
         <motion.div variants={childrenVariants}>
-          <TextLine>
-            Tantum possumus, quantum scimus (лат.) – мы можем столько, сколько
-            знаем (Ф.Бэкон).
-          </TextLine>
+          <TextLine>{heroMinor}</TextLine>
         </motion.div>
 
         <nav className={styles.hero__navcontainer}>
           <motion.div variants={childrenVariants}>
-            <Button>Объявления</Button>
+            <Button>{heroButtons[0]}</Button>
           </motion.div>
           <motion.div variants={childrenVariants}>
-            <Button>Контакты</Button>
+            <Button>{heroButtons[1]}</Button>
           </motion.div>
         </nav>
         <motion.svg
