@@ -1,5 +1,6 @@
 import styles from "./Employees.module.css";
 import MinorCaption from "../UI/MinorCaption/MinorCaption.jsx";
+import SubTextLine from "../UI/SubTextLine/SubTextLine.jsx";
 
 export default function Employees({ employees }) {
   return (
@@ -14,9 +15,7 @@ export default function Employees({ employees }) {
           <MinorCaption style={{ maxWidth: "90%", marginTop: "20px" }}>
             {employee.name}
           </MinorCaption>
-          <span className={styles.employees__minorcaption}>
-            {employee.post}
-          </span>
+          <SubTextLine>{employee.post}</SubTextLine>
         </figure>
       ))}
     </div>

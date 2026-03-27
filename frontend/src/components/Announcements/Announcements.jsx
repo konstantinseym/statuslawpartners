@@ -1,10 +1,10 @@
 import styles from "./Announcements.module.css";
 import InteractiveCaption from "../UI/InteractiveCaption/InteractiveCaption.jsx";
+import SubTextLine from "../UI/SubTextLine/SubTextLine.jsx";
 import ModalAnnouncement from "../ModalAnnouncement/ModalAnnouncement.jsx";
 import { useState } from "react";
 
 export default function Announcements({ news }) {
-
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
 
   const [isModalAnnouncementsOpen, setIsModalAnnouncementsOpen] =
@@ -27,15 +27,17 @@ export default function Announcements({ news }) {
       />
 
       {news.map((newsItem) => (
-        <InteractiveCaption
-          key={newsItem.id}
-          onClick={() => {
-            setSelectedAnnouncement(newsItem);
-            showModalAnnouncements();
-          }}
-        >
-          {newsItem.date} | {newsItem.title}
-        </InteractiveCaption>
+        <div key={newsItem.id}>
+          <InteractiveCaption
+            onClick={() => {
+              setSelectedAnnouncement(newsItem);
+              showModalAnnouncements();
+            }}
+          >
+            {newsItem.title}
+          </InteractiveCaption>
+          <SubTextLine>{newsItem.date}</SubTextLine>
+        </div>
       ))}
     </div>
   );
