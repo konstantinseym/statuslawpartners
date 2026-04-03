@@ -6,6 +6,11 @@
   --bluecolor: rgb(41, 113, 245);
   --orangecolor: rgb(255, 133, 98);
   --transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  --fontsize-s: 0.875rem;
+  --fontsize-m: 1rem;
+  --fontsize-l: 1.25rem;
+  --fontsize-xl: 2.25rem;
+  --fontsize-xxl: 3rem;
 }
 * {
   margin: 0;
@@ -17,4 +22,19 @@ html {
   scroll-behavior: smooth;
   font-family: "Google Sans Flex", sans-serif;
   background-color: var(--blackcolor);
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --fontsize-l: 1.125rem;
+    --fontsize-xl: 1.75rem;
+    --fontsize-xxl: 2.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --fontsize-xl: 1.5rem;
+    --fontsize-xxl: 2rem;
+  }
 }

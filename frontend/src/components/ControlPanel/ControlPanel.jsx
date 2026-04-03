@@ -10,7 +10,6 @@ export default function ControlPanel() {
     async function fetchAppData() {
       try {
         const res = await axios.get("/api/getAppData");
-        console.log(res.data);
       } catch (err) {
         console.log(err);
       }

@@ -1,4 +1,4 @@
 .minorcaption {
-  font-size: 1.175rem;
+  font-size: var(--fontsize-l);
   font-weight: 500;
 }

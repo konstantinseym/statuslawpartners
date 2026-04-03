@@ -28,10 +28,11 @@
   gap: 32px;
   color: var(--whitecolor);
   position: relative;
+  padding: 32px;
 }
 .hero__caption {
   font-weight: 500;
-  font-size: 3.5rem;
+  font-size: var(--fontsize-xxl);
   text-align: center;
 }
 .hero__navcontainer {
@@ -53,4 +54,10 @@
 .hero__arrow:hover {
   fill: rgb(255, 255, 255);
   scale: 1.1;
+}
+
+@media (max-width: 480px) {
+  .hero__navcontainer {
+    flex-direction: column;
+  }
 }

@@ -5,7 +5,7 @@
 }
 .employees__employeecard {
   display: flex;
-  width: 15vw;
+  width: 90%;
   flex-direction: column;
   margin: 48px auto;
   gap: 8px;
@@ -31,4 +31,16 @@
 }
 .employees__employeeimg {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 1280px) {
+  .employees {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .employees {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

@@ -5,7 +5,7 @@
   border-radius: 30px;
   background-color: var(--bluecolor);
   color: var(--whitecolor);
-  font-size: 1rem;
+  font-size: var(--fontsize-m);
   transition: var(--transition);
 }
 .button:hover {
