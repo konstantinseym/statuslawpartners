@@ -40,10 +40,14 @@ app.delete("/api/deleteAnnouncement/:id", async (req, res) => {
   res.sendStatus(200);
 });
 
-// app.post("/api/updateCaptions", async (req, res) => {
-//   const clientData = res.body;
-//   console.log(req.body);
-//   res.sendStatus(201);
-// });
+app.put("/api/updateCaptions", async (req, res) => {
+  const dbData = (await pool.query("SELECT * FROM content;")).rows[0];
+  dbData.data.captions = req.body;
+  await pool.query(
+    "UPDATE content SET data = $1 WHERE section = 'stringsvalues';",
+    [dbData.data],
+  );
+  res.sendStatus(200);
+});
 
 app.listen(3000, () => console.log("server started at port 3000"));

@@ -3,6 +3,7 @@ import axios from "axios";
 import styles from "./ControlPanel.module.css";
 import FormAddAnnouncement from "./forms/FormAddAnnouncement.jsx";
 import FormDeleteAnnouncement from "./forms/FormDeleteAnnouncement.jsx";
+import FormUpdateCaptions from "./forms/FormUpdateCaptions.jsx";
 
 export default function ControlPanel() {
   const [appData, setAppData] = useState(null);
@@ -32,6 +33,8 @@ export default function ControlPanel() {
         news={appData.news}
         handleDeleteAnnouncement={refreshAnnouncements}
       />
+      <FormUpdateCaptions captions={appData.captions} />
+      <p>{JSON.stringify(appData)}</p>
     </main>
   ) : (
     <></>
@@ -42,32 +45,10 @@ export default function ControlPanel() {
 // тогда компонент и структура админки будут гуд. нужно будет не скупиться просто и не спешить, сделать столько форм, сколько нужно. может быть сами формы по логике и структуре сделать как-то поумнее и не настолько на коленке.
 
 // export default function ControlPanel() {
-//   useEffect(() => {
-//     async function fetchAppData() {
-//       try {
-//         const res = await axios.get("/api/getAppData");
-//       } catch (err) {
-//         console.log(err);
-//       }
-//     }
-
-//     fetchAppData();
-//   }, []);
-
-//   async function updateCaptions(e) {
-//     e.preventDefault();
-//   }
-
-//   async function updateEmployees(e) {
-//     e.preventDefault();
-//   }
 
 //   return (
 //     <main className={styles.controlpanel}>
 //       <h1>control panel</h1>
-//       <form className={styles.form} onSubmit={addAnnouncementSubmit}>
-//         <h2>Редактировать объявления</h2>
-//       </form>
 //       <form className={styles.form} onSubmit={updateCaptions}>
 //         <h2>Редактировать заголовки</h2>
 //         <input type="text" className={styles.text} placeholder="Логотип" />
