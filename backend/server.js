@@ -60,4 +60,12 @@ app.put("/api/updateContacts", async (req, res) => {
   res.sendStatus(200);
 });
 
+app.put("/api/updateFooterLink", async (req, res) => {
+  await pool.query(
+    "UPDATE stringvalues SET data = $1::jsonb WHERE section = 'footerLink';",
+    [JSON.stringify(req.body)],
+  );
+  res.sendStatus(200);
+});
+
 app.listen(3000, () => console.log("server started at port 3000"));

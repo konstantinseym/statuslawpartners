@@ -10,7 +10,7 @@ export default function FormUpdateFooterLink({ link }) {
     e.preventDefault();
     setisLoading(true);
     const response = await updateFooterLink(formData);
-    if ((response.status = 200)) {
+    if ((response.status === 200)) {
       setisLoading(false);
     } else {
       alert("Что-то пошло не так...");
