@@ -7,6 +7,7 @@ import FormUpdateCaptions from "./forms/FormUpdateCaptions.jsx";
 import FormUpdateDetails from "./forms/FormUpdateDetails.jsx";
 import FormUpdateContacts from "./forms/FormUpdateContacts.jsx";
 import FormUpdateFooterLink from "./forms/FormUpdateFooterLink.jsx";
+import FormAddEmployee from "./forms/FormAddEmployee.jsx";
 
 export default function ControlPanel() {
   const [appData, setAppData] = useState(null);
@@ -40,6 +41,7 @@ export default function ControlPanel() {
       <FormUpdateDetails details={appData.detailsBlock} />
       <FormUpdateContacts contacts={appData.contactsBlock} />
       <FormUpdateFooterLink link={appData.footerLink} />
+      <FormAddEmployee />
     </main>
   ) : (
     <></>

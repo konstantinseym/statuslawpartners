@@ -7,18 +7,28 @@ const app = express();
 
 app.use(express.json());
 
+app.use("/uploads", express.static("uploads"));
+
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"), // Папка для файлов
+  destination: (req, file, cb) => cb(null, "uploads/"),
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
-    cb(null, `${Date.now()}${ext}`); // Уникальное имя
+    cb(null, `${Date.now()}${ext}`);
   },
 });
 
 const upload = multer({ storage });
 
-app.post("/api/upload", upload.single("file"), (req, res) => {
-  console.log("uploaded");
+app.post("/api/upload", upload.single("file"), async (req, res) => {
+  const newEmployeeData = JSON.parse(req.body.data);
+  const filePath = "/uploads/" + req.file.filename;
+
+  await pool.query(
+    "INSERT INTO employees (name, post, imageurl, imagealt) VALUES ($1, $2, $3, $4);",
+    [newEmployeeData.name, newEmployeeData.role, filePath, newEmployeeData.alt],
+  );
+
+  res.sendStatus(200);
 });
 
 app.get("/api/getAppData", async (_, res) => {

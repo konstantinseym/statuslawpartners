@@ -18,7 +18,7 @@
   height: 144px;
   resize: none;
 }
-.button {
+.button, .file {
   padding: 4px 12px;
   font-size: 1rem;
 }
