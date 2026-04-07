@@ -13,6 +13,13 @@ export default function FormUpdateContacts({ contacts }) {
     }));
   }
 
+  function deleteField(id) {
+    setFormData((prev) => ({
+      ...prev,
+      minorCaptions: prev.minorCaptions.filter((item) => item.id !== id),
+    }));
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     setisLoading(true);
@@ -37,22 +44,29 @@ export default function FormUpdateContacts({ contacts }) {
       />
       <h3>Дополнительные поля</h3>
       {formData.minorCaptions.map((caption) => (
-        <input
-          key={caption.id}
-          type="text"
-          className={styles.text}
-          value={caption.value}
-          onChange={(e) =>
-            setFormData((prev) => ({
-              ...prev,
-              minorCaptions: prev.minorCaptions.map((item) =>
-                item.id === caption.id
-                  ? { ...item, value: e.target.value }
-                  : item,
-              ),
-            }))
-          }
-        />
+        <div key={caption.id} style={{ width: "100%" }}>
+          <input
+            type="text"
+            className={styles.text}
+            value={caption.value}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                minorCaptions: prev.minorCaptions.map((item) =>
+                  item.id === caption.id
+                    ? { ...item, value: e.target.value }
+                    : item,
+                ),
+              }))
+            }
+          />
+          <input
+            type="button"
+            value="DEL"
+            className={styles.button}
+            onClick={() => deleteField(caption.id)}
+          />
+        </div>
       ))}
       <input
         type="button"

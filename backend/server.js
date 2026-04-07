@@ -45,7 +45,7 @@ app.put("/api/updateCaptions", async (req, res) => {
 });
 
 app.put("/api/updatedetails", async (req, res) => {
-  pool.query(
+  await pool.query(
     "UPDATE stringvalues SET data = $1::jsonb WHERE section = 'detailsBlock';",
     [JSON.stringify(req.body)],
   );
@@ -53,7 +53,10 @@ app.put("/api/updatedetails", async (req, res) => {
 });
 
 app.put("/api/updateContacts", async (req, res) => {
-  console.log(req.body);
+  await pool.query(
+    "UPDATE stringvalues SET data = $1::jsonb WHERE section = 'contactsBlock';",
+    [JSON.stringify(req.body)],
+  );
   res.sendStatus(200);
 });
 
