@@ -1,5 +1,7 @@
 import { useState } from "react";
+
 import { updateDetails } from "../api/updateDetails";
+
 import styles from "../ControlPanel.module.css";
 
 export default function FormUpdateDetails({ details }) {

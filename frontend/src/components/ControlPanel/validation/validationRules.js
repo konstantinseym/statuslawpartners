@@ -13,3 +13,8 @@ export const CAPTIONS_VALIDATION_RULES = {
   detailsCaptionMax: 32,
   contactsCaptionMax: 32,
 };
+
+export const CONTACTS_VALIDATION_RULES = {
+  majorCaptionMax: 64,
+  minorCaptionsMax: 96,
+};

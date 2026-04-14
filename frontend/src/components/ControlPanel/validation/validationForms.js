@@ -1,6 +1,7 @@
 import {
   ANNOUNCEMENT_VALIDATION_RULES,
   CAPTIONS_VALIDATION_RULES,
+  CONTACTS_VALIDATION_RULES,
 } from "./validationrules.js";
 
 ///////////////////
@@ -118,6 +119,47 @@ export function validateFormUpdateCaptions(values) {
       CAPTIONS_VALIDATION_RULES.contactsCaptionMax +
       " символов"
     );
+  }
+
+  return null;
+}
+
+//////////////
+// CONTACTS //
+//////////////
+
+export function validateFormUpdateContacts(values) {
+  const majorCaption = values.majorCaption;
+  const minorCaptions = [...values.minorCaptions];
+
+  if (!majorCaption) {
+    return "Основное поле должно быть заполнено";
+  }
+
+  if (majorCaption.length > CONTACTS_VALIDATION_RULES.majorCaptionMax) {
+    return (
+      "Основное поле должно быть меньше " +
+      CAPTIONS_VALIDATION_RULES.majorCaptionMax +
+      " символов"
+    );
+  }
+
+  for (let i = 0; i < minorCaptions.length; i++) {
+    const value = minorCaptions[i].value;
+
+    if (!value) {
+      return "Дополнительное поле №" + (i + 1) + " должно быть заполнено";
+    }
+
+    if (value.length > CONTACTS_VALIDATION_RULES.minorCaptionsMax) {
+      return (
+        "Дополнительное поле №" +
+        (i + 1) +
+        " должно быть меньше" +
+        CONTACTS_VALIDATION_RULES.minorCaptionsMax +
+        "символов"
+      );
+    }
   }
 
   return null;

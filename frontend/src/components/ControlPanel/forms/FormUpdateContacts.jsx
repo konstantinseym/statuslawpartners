@@ -1,20 +1,24 @@
-import styles from "../ControlPanel.module.css";
 import { useState } from "react";
+
+import { CONTACTS_VALIDATION_RULES } from "../validation/validationrules.js";
 import { updateContacts } from "../api/updateContacts.js";
+import { validateFormUpdateContacts } from "../validation/validationForms.js";
+
+import styles from "../ControlPanel.module.css";
 
 export default function FormUpdateContacts({ contacts }) {
-  const [formData, setFormData] = useState(contacts),
-    [isLoading, setisLoading] = useState(false);
+  const [formValue, setFormValue] = useState(contacts);
+  const [isLoading, setisLoading] = useState(false);
 
   function addField() {
-    setFormData((prev) => ({
+    setFormValue((prev) => ({
       ...prev,
       minorCaptions: [...prev.minorCaptions, { id: Date.now(), value: "" }],
     }));
   }
 
   function deleteField(id) {
-    setFormData((prev) => ({
+    setFormValue((prev) => ({
       ...prev,
       minorCaptions: prev.minorCaptions.filter((item) => item.id !== id),
     }));
@@ -22,39 +26,61 @@ export default function FormUpdateContacts({ contacts }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setisLoading(true);
-    const response = await updateContacts(formData);
-    if ((response.status === 200)) {
+    const normalizedData = {
+      majorCaption: formValue.majorCaption.trim(),
+      minorCaptions: formValue.minorCaptions.map((item) => ({
+        ...item,
+        value: item.value.trim(),
+      })),
+    };
+
+    const validationError = validateFormUpdateContacts(normalizedData);
+    if (validationError) {
+      alert(validationError);
+    }
+
+    try {
+      setisLoading(true);
+      await updateContacts(normalizedData);
+    } catch (err) {
+      console.log(err);
+    } finally {
       setisLoading(false);
-    } else {
-      alert("Что-то пошло не так...");
     }
   }
+
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <h2 className={styles.caption}>Редактировать контакты</h2>
       <h3>Основное поле</h3>
-      <p className={styles.pgph}>{formData.majorCaption.length} / 64</p>
+      <p className={styles.pgph}>
+        {formValue.majorCaption.length} /{" "}
+        {CONTACTS_VALIDATION_RULES.majorCaptionMax}
+      </p>
       <input
         type="text"
         className={styles.text}
-        maxLength={64}
-        value={formData.majorCaption}
+        maxLength={CONTACTS_VALIDATION_RULES.majorCaptionMax}
+        value={formValue.majorCaption}
         onChange={(e) =>
-          setFormData({ ...formData, majorCaption: e.target.value })
+          setFormValue({ ...formValue, majorCaption: e.target.value })
         }
       />
       <h3>Дополнительные поля</h3>
-      {formData.minorCaptions.map((caption) => (
+      {formValue.minorCaptions.map((caption) => (
         <div key={caption.id}>
-          <p className={styles.pgph}>{caption.value.length} / 96</p>
+          <p className={styles.pgph}>
+            {caption.value.length} /{" "}
+            {CONTACTS_VALIDATION_RULES.minorCaptionsMax}
+          </p>
           <input
             type="text"
             className={styles.text}
-            maxLength={96}
+            maxLength={CONTACTS_VALIDATION_RULES.minorCaptionsMax}
             value={caption.value}
+            disabled={isLoading}
             onChange={(e) =>
-              setFormData((prev) => ({
+              setFormValue((prev) => ({
                 ...prev,
                 minorCaptions: prev.minorCaptions.map((item) =>
                   item.id === caption.id
@@ -67,6 +93,7 @@ export default function FormUpdateContacts({ contacts }) {
           <input
             type="button"
             value="-"
+            disabled={isLoading}
             className={[styles.button, styles.buttonred].join(" ")}
             onClick={() => deleteField(caption.id)}
           />
@@ -82,7 +109,7 @@ export default function FormUpdateContacts({ contacts }) {
       <input
         type="submit"
         className={styles.button}
-        value="Сохранить"
+        value={isLoading ? "Сохранение" : "Сохранить"}
         disabled={isLoading}
       />
     </form>
