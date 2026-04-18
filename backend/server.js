@@ -43,14 +43,14 @@ function checkAuth(req, res, next) {
   return res.sendStatus(401);
 }
 
-app.get("/api/whoami", (req, res) => {
+app.get("/api/session", (req, res) => {
   if (req.session.isAuth) {
     return res.json({ isAuth: true });
   }
   res.json({ isAuth: false });
 });
 
-app.post("/api/login", async (req, res) => {
+app.post("/api/session", async (req, res) => {
   const clientPassword = req.body.password;
   const checkPassword = await bcrypt.compare(clientPassword, hash);
   if (checkPassword === false) {
@@ -62,19 +62,7 @@ app.post("/api/login", async (req, res) => {
 
 // CRUD logic
 
-app.post("/api/upload", checkAuth, upload.single("file"), async (req, res) => {
-  const newEmployeeData = JSON.parse(req.body.data);
-  const filePath = "/uploads/" + req.file.filename;
-
-  await pool.query(
-    "INSERT INTO employees (name, post, imageurl, imagealt) VALUES ($1, $2, $3, $4);",
-    [newEmployeeData.name, newEmployeeData.role, filePath, newEmployeeData.alt],
-  );
-
-  res.sendStatus(200);
-});
-
-app.get("/api/getAppData", async (_, res) => {
+app.get("/api/app-data", async (_, res) => {
   const stringValues = (await pool.query("SELECT * FROM stringvalues")).rows;
   const appData = {
     news: (await pool.query("SELECT * FROM news ORDER BY id DESC")).rows,
@@ -90,7 +78,7 @@ app.get("/api/getAppData", async (_, res) => {
   res.json(appData);
 });
 
-app.post("/api/addAnnouncement", checkAuth, async (req, res) => {
+app.post("/api/announcements", checkAuth, async (req, res) => {
   const clientData = req.body;
   await pool.query("INSERT INTO news (title, content) values ($1, $2);", [
     clientData.caption,
@@ -99,13 +87,13 @@ app.post("/api/addAnnouncement", checkAuth, async (req, res) => {
   res.sendStatus(201);
 });
 
-app.delete("/api/deleteAnnouncement/:id", checkAuth, async (req, res) => {
+app.delete("/api/announcements/:id", checkAuth, async (req, res) => {
   const id = req.params.id;
   await pool.query("DELETE FROM news WHERE id = $1;", [id]);
-  res.sendStatus(200);
+  res.sendStatus(204);
 });
 
-app.put("/api/updateCaptions", checkAuth, async (req, res) => {
+app.put("/api/captions", checkAuth, async (req, res) => {
   await pool.query(
     "UPDATE stringvalues SET data = $1::jsonb WHERE section = 'captions';",
     [JSON.stringify(req.body)],
@@ -113,7 +101,7 @@ app.put("/api/updateCaptions", checkAuth, async (req, res) => {
   res.sendStatus(200);
 });
 
-app.put("/api/updatedetails", checkAuth, async (req, res) => {
+app.put("/api/details", checkAuth, async (req, res) => {
   await pool.query(
     "UPDATE stringvalues SET data = $1::jsonb WHERE section = 'detailsBlock';",
     [JSON.stringify(req.body)],
@@ -121,7 +109,7 @@ app.put("/api/updatedetails", checkAuth, async (req, res) => {
   res.sendStatus(200);
 });
 
-app.put("/api/updateContacts", checkAuth, async (req, res) => {
+app.put("/api/contacts", checkAuth, async (req, res) => {
   await pool.query(
     "UPDATE stringvalues SET data = $1::jsonb WHERE section = 'contactsBlock';",
     [JSON.stringify(req.body)],
@@ -129,12 +117,34 @@ app.put("/api/updateContacts", checkAuth, async (req, res) => {
   res.sendStatus(200);
 });
 
-app.put("/api/updateFooterLink", checkAuth, async (req, res) => {
+app.put("/api/footer-link", checkAuth, async (req, res) => {
   await pool.query(
     "UPDATE stringvalues SET data = $1::jsonb WHERE section = 'footerLink';",
     [JSON.stringify(req.body)],
   );
   res.sendStatus(200);
 });
+
+app.post(
+  "/api/employees",
+  checkAuth,
+  upload.single("file"),
+  async (req, res) => {
+    const newEmployeeData = JSON.parse(req.body.data);
+    const filePath = "/uploads/" + req.file.filename;
+
+    await pool.query(
+      "INSERT INTO employees (name, post, imageurl, imagealt) VALUES ($1, $2, $3, $4);",
+      [
+        newEmployeeData.name,
+        newEmployeeData.role,
+        filePath,
+        newEmployeeData.alt,
+      ],
+    );
+
+    res.sendStatus(201);
+  },
+);
 
 app.listen(3000, () => console.log("server started at port 3000"));

@@ -12,7 +12,7 @@ export default function Auth() {
     e.preventDefault();
 
     await axios.post(
-      "/api/login",
+      "/api/session",
       { password: passwordInputValue },
       { withCredentials: true },
     );

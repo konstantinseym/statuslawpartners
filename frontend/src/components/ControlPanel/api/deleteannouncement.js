@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function deleteAnnouncement(id) {
   try {
-    const response = await axios.delete("/api/deleteAnnouncement/" + id, {
+    const response = await axios.delete("/api/announcements/" + id, {
       withCredentials: true,
       headers: { "Content-Type": "application/json" },
     });

@@ -6,7 +6,7 @@ export default function ProtectedRoute({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   async function checkAuth() {
-    const response = await axios.get("/api/whoami", { withCredentials: true });
+    const response = await axios.get("/api/session", { withCredentials: true });
     setIsLoggedIn(response.data.isAuth);
   }
 

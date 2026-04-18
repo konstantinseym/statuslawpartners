@@ -35,7 +35,7 @@ export default function FormAddEmployee() {
     formData.append("file", file);
     formData.append("data", JSON.stringify(formValues));
 
-    const response = await axios.post("/api/upload", formData);
+    const response = await axios.post("/api/employees", formData);
     if (response.status === 200) {
       setIsLoading(false);
       setFormValues({ name: "", role: "", alt: "" });

@@ -12,7 +12,7 @@ export default function HomePage() {
   useEffect(() => {
     async function fetchAppData() {
       try {
-        const res = await axios.get("/api/getAppData");
+        const res = await axios.get("/api/app-data");
         setAppData(res.data);
       } catch (err) {
         console.log(err);
