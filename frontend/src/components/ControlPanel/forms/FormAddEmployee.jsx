@@ -5,7 +5,11 @@ import axios from "axios";
 export default function FormAddEmployee({ handleAddEmployee }) {
   const [file, setFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [formValues, setFormValues] = useState({ name: "", role: "", alt: "" });
+  const [formValues, setFormValues] = useState({
+    name: "",
+    role: "",
+    alt: "",
+  });
 
   function handleFileChange(e) {
     const allowedTypes = ["image/jpeg", "image/png"];
@@ -37,9 +41,13 @@ export default function FormAddEmployee({ handleAddEmployee }) {
     try {
       setIsLoading(true);
       await axios.post("/api/employees", formData);
-      setFormValues({ name: "", role: "", alt: "" });
       setFile(null);
       handleAddEmployee();
+      setFormValues({
+        name: "",
+        role: "",
+        alt: "",
+      });
     } catch (err) {
       console.log(err);
     } finally {

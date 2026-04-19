@@ -58,8 +58,6 @@ export default function FormDeleteEmployee({
           </div>
         );
       })}
-
-      {/* <p>{JSON.stringify(employees)}</p> */}
     </form>
   );
 }
