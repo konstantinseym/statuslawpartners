@@ -198,19 +198,10 @@ export function validateFormUpdateDetails(values) {
 ////////////////
 
 export function validateFormUpdateFooterLink(values) {
-  const link = values.link;
   const caption = values.caption;
 
-  if (!link || !caption) {
-    return "Все поля должны быть заполнены";
-  }
-
-  if (link.length > FOOTERLINK_VALIDATION_RULES.linkMax) {
-    return (
-      "Длина ссылки должна быть меньше " +
-      FOOTERLINK_VALIDATION_RULES.linkMax +
-      " символов."
-    );
+  if (!caption) {
+    return "Поле должно быть заполнено";
   }
 
   if (caption.length > FOOTERLINK_VALIDATION_RULES.captionMax) {

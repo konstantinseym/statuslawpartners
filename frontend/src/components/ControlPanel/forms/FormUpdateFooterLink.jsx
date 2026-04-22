@@ -18,7 +18,6 @@ export default function FormUpdateFooterLink({ link }) {
   async function handleSubmit(e) {
     e.preventDefault();
     const normalizedData = {
-      link: formValue.link.trim(),
       caption: formValue.caption.trim(),
     };
 
@@ -30,7 +29,7 @@ export default function FormUpdateFooterLink({ link }) {
 
     try {
       setIsLoading(true);
-      await updateFooterLink(formValue);
+      await updateFooterLink(normalizedData);
     } catch (err) {
       console.log(err);
       alert("Ошибка");
@@ -42,19 +41,6 @@ export default function FormUpdateFooterLink({ link }) {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <h2 className={styles.caption}>Редактировать ссылку в подвале</h2>
-      <label className={styles.formlabel}>
-        URL
-        <input
-          type="text"
-          name="link"
-          className={styles.text}
-          placeholder="URL"
-          maxLength={FOOTERLINK_VALIDATION_RULES.linkMax}
-          value={formValue.link}
-          onChange={handleInputChange}
-          disabled={isLoading}
-        />
-      </label>
       <label className={styles.formlabel}>
         Текст ({formValue.caption.length} /
         {FOOTERLINK_VALIDATION_RULES.captionMax})

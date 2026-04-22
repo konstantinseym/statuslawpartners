@@ -2,7 +2,7 @@ import express from "express";
 import session from "express-session";
 
 import { sessionConfig } from "./config/session.js";
-import {contentRouter} from "./routes/content.routes.js";
+import { contentRouter } from "./routes/content.routes.js";
 import { sessionRouter } from "./routes/session.routes.js";
 import { appDataRouter } from "./routes/appData.routes.js";
 import { announcementsRouter } from "./routes/announcements.routes.js";

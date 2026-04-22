@@ -24,6 +24,5 @@ export const DETAILS_VALIDATION_RULES = {
 };
 
 export const FOOTERLINK_VALIDATION_RULES = {
-  linkMax: 2048,
   captionMax: 256,
 };
