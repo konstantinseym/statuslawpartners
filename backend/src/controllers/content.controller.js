@@ -40,3 +40,11 @@ export async function updateFooterLink(req, res, next) {
     next(err);
   }
 }
+
+export async function updateHeroBackground(req, res, next) {
+  res.sendStatus(200);
+}
+
+export async function updatePolicy(req, res, next) {
+  res.sendStatus(200);
+}
