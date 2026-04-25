@@ -17,13 +17,13 @@ contentRouter.put("/details", checkAuth, updateDetails);
 contentRouter.put("/contacts", checkAuth, updateContacts);
 contentRouter.put("/footer-link", checkAuth, updateFooterLink);
 contentRouter.put(
-  "hero-background",
+  "/hero-background",
   checkAuth,
   uploadHeroBG.single("file"),
   updateHeroBackground,
 );
 contentRouter.put(
-  "policy",
+  "/policy",
   checkAuth,
   uploadPolicy.single("file"),
   updatePolicy,

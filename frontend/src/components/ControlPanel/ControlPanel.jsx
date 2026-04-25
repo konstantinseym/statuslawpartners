@@ -10,6 +10,7 @@ import FormUpdateCaptions from "./forms/FormUpdateCaptions.jsx";
 import FormUpdateDetails from "./forms/FormUpdateDetails.jsx";
 import FormUpdateContacts from "./forms/FormUpdateContacts.jsx";
 import FormUpdateFooterLink from "./forms/FormUpdateFooterLink.jsx";
+import FormUpdatePolicy from "./forms/FormUpdatePolicy.jsx";
 
 import styles from "./ControlPanel.module.css";
 
@@ -53,6 +54,7 @@ export default function ControlPanel() {
         employees={appData.employees}
         handleDeleteEmployee={refreshPanel}
       />
+      <FormUpdatePolicy />
     </main>
   ) : (
     <></>
