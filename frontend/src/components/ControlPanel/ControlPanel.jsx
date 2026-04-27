@@ -45,7 +45,11 @@ export default function ControlPanel() {
           <ul className={styles.navlist}>
             <li>
               <button
-                className={styles.btn}
+                className={
+                  activeSection === SECTIONS.news
+                    ? [styles.btn, styles.btnselected].join(" ")
+                    : styles.btn
+                }
                 onClick={() => setActiveSection(SECTIONS.news)}
               >
                 News
@@ -53,7 +57,11 @@ export default function ControlPanel() {
             </li>
             <li>
               <button
-                className={styles.btn}
+                className={
+                  activeSection === SECTIONS.employees
+                    ? [styles.btn, styles.btnselected].join(" ")
+                    : styles.btn
+                }
                 onClick={() => setActiveSection(SECTIONS.employees)}
               >
                 Employees
@@ -61,7 +69,11 @@ export default function ControlPanel() {
             </li>
             <li>
               <button
-                className={styles.btn}
+                className={
+                  activeSection === SECTIONS.information
+                    ? [styles.btn, styles.btnselected].join(" ")
+                    : styles.btn
+                }
                 onClick={() => setActiveSection(SECTIONS.information)}
               >
                 Information
@@ -69,7 +81,11 @@ export default function ControlPanel() {
             </li>
             <li>
               <button
-                className={styles.btn}
+                className={
+                  activeSection === SECTIONS.files
+                    ? [styles.btn, styles.btnselected].join(" ")
+                    : styles.btn
+                }
                 onClick={() => setActiveSection(SECTIONS.files)}
               >
                 Files
@@ -77,7 +93,11 @@ export default function ControlPanel() {
             </li>
             <li>
               <button
-                className={styles.btn}
+                className={
+                  activeSection === SECTIONS.captions
+                    ? [styles.btn, styles.btnselected].join(" ")
+                    : styles.btn
+                }
                 onClick={() => setActiveSection(SECTIONS.captions)}
               >
                 Captions

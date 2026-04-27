@@ -24,9 +24,13 @@
   color: rgb(255, 255, 255);
   font-size: var(--fontsize-s);
   cursor: pointer;
+  transition: var(--transition);
 }
 .btn:hover {
   background-color: rgb(130, 130, 130);
+}
+.btnselected {
+  background-color: rgb(65, 65, 65);
 }
 .formpanel {
   flex: 5;
@@ -36,89 +40,3 @@
   padding: 16px 0 32px 32px;
   align-items: flex-start;
 }
-
-/* .maincontainer {
-  width: 100vw;
-  min-height: 100vh;
-  background-color: rgb(240, 240, 240);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-  padding: 32px 0;
-}
-.flexcontainer {
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-}
-.form {
-  width: 70%;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-.caption {
-  font-size: var(--fontsize-l);
-}
-.pgph {
-  font-size: var(--fontsize-s);
-}
-.formlabel {
-  width: 720px;
-  font-size: var(--fontsize-s);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.text {
-  width: 480px;
-  font-size: var(--fontsize-s);
-  padding: 4px;
-  outline: none;
-  margin: 0 8px;
-}
-.textarea {
-  font-size: var(--fontsize-s);
-  outline: none;
-  padding: 4px;
-  width: 480px;
-  height: 144px;
-  resize: none;
-}
-.button {
-  background-color: var(--bluecolor);
-  border: none;
-  border-radius: 8px;
-  color: var(--whitecolor);
-  font-size: var(--fontsize-s);
-  padding: 4px 12px;
-  cursor: pointer;
-}
-.buttonred {
-  background-color: var(--redcolor);
-}
-.button:disabled {
-  background-color: rgb(100, 100, 100);
-}
-.button:hover {
-  background-color: var(--orangecolor);
-}
-
-.fileupload {
-  background-color: var(--orangecolor);
-  border: none;
-  border-radius: 8px;
-  color: var(--whitecolor);
-  font-size: var(--fontsize-s);
-  padding: 4px 12px;
-  cursor: pointer;
-}
-
-.fileupload input {
-  display: none;
-} */

@@ -39,6 +39,7 @@
   border: 1px solid rgb(35, 35, 35);
   background-color: rgb(35, 35, 35);
   color: rgb(255, 255, 255);
+  transition: var(--transition);
 }
 .inputfield:focus {
   border: 1px solid rgb(65, 65, 65);
@@ -54,6 +55,7 @@
   border: 1px solid rgb(35, 35, 35);
   background-color: rgb(35, 35, 35);
   color: rgb(255, 255, 255);
+  transition: var(--transition);
 }
 .inputtextarea:focus {
   border: 1px solid rgb(65, 65, 65);
@@ -68,6 +70,7 @@
   color: rgb(255, 255, 255);
   font-size: var(--fontsize-s);
   cursor: pointer;
+  transition: var(--transition);
 }
 .button:hover,
 .file:hover {
