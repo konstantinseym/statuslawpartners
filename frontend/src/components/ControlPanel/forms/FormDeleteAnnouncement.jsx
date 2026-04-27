@@ -3,7 +3,7 @@ import { useState } from "react";
 import { deleteAnnouncement } from "../api/deleteannouncement.js";
 import { formatDate } from "../../../utils/formatDate.js";
 
-import styles from "../ControlPanel.module.css";
+import styles from "../Forms.module.css";
 
 export default function FormDeleteAnnouncement({
   news,
@@ -30,25 +30,25 @@ export default function FormDeleteAnnouncement({
 
   return (
     <form className={styles.form}>
-      <h2 className={styles.caption}>Удалить объявление</h2>
+      <h2 className={styles.title}>Delete announcement</h2>
 
       {news.length === 0 ? (
-        <p className={styles.pgph}>Объявлений пока нет</p>
+        <p className={styles.text}>No announcements yet</p>
       ) : (
         news.map((newsItem) => {
           const isCurrentItemDeleting = deletingId === newsItem.id;
           const isAnyItemDeleting = deletingId !== null;
 
           return (
-            <div key={newsItem.id} className={styles.flexcontainer}>
-              <p className={styles.pgph}>Название записи: {newsItem.title}</p>
-              <p className={styles.pgph}>
-                Дата добавления записи: {formatDate(newsItem.date)}
-              </p>
+            <div key={newsItem.id} className={styles.newsitem}>
+              <div>
+                <p className={styles.text}>{newsItem.title}</p>
+                <p className={styles.text}>{formatDate(newsItem.date)}</p>
+              </div>
               <input
                 className={[styles.button, styles.buttonred].join(" ")}
                 type="button"
-                value={isCurrentItemDeleting ? "..." : "-"}
+                value={isCurrentItemDeleting ? "..." : "delete"}
                 onClick={() => handleDelete(newsItem.id)}
                 disabled={isAnyItemDeleting}
               />

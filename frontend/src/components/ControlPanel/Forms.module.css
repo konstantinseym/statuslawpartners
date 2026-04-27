@@ -1,0 +1,119 @@
+.form {
+  border: 1px solid rgb(65, 65, 65);
+  border-radius: 4px;
+  width: 720px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.title {
+  font-size: var(--fontsize-l);
+  color: rgb(255, 255, 255);
+}
+.subtitle {
+  font-size: var(--fontsize-m);
+  color: rgb(255, 255, 255);
+}
+.text {
+  font-size: var(--fontsize-s);
+  color: rgb(255, 255, 255);
+}
+.label {
+  font-size: var(--fontsize-s);
+  color: rgb(255, 255, 255);
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  justify-content: space-between;
+  width: 100%;
+}
+.inputfield {
+  font-size: var(--fontsize-s);
+  width: 100%;
+  height: 32px;
+  padding-left: 8px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid rgb(35, 35, 35);
+  background-color: rgb(35, 35, 35);
+  color: rgb(255, 255, 255);
+}
+.inputfield:focus {
+  border: 1px solid rgb(65, 65, 65);
+}
+.inputtextarea {
+  font-size: var(--fontsize-s);
+  width: 100%;
+  resize: none;
+  height: 320px;
+  padding: 8px 8px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid rgb(35, 35, 35);
+  background-color: rgb(35, 35, 35);
+  color: rgb(255, 255, 255);
+}
+.inputtextarea:focus {
+  border: 1px solid rgb(65, 65, 65);
+}
+.button,
+.file {
+  width: 96px;
+  height: 32px;
+  border: 1px solid rgb(65, 65, 65);
+  border-radius: 4px;
+  background-color: rgb(30, 30, 30);
+  color: rgb(255, 255, 255);
+  font-size: var(--fontsize-s);
+  cursor: pointer;
+}
+.button:hover,
+.file:hover {
+  background-color: rgb(130, 130, 130);
+}
+.buttonred:hover {
+  background-color: rgb(255, 0, 0);
+}
+.newsitem {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  align-items: center;
+  border: 1px solid rgb(65, 65, 65);
+  border-radius: 4px;
+}
+.detailsitem,
+.contactsitem {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+  align-items: flex-start;
+  border: 1px solid rgb(65, 65, 65);
+  border-radius: 4px;
+  gap: 8px;
+}
+.file {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  overflow: hidden;
+}
+.file input {
+  display: none;
+}
+.editemployeecontainer {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(65, 65, 65);
+  border-radius: 4px;
+  gap: 8px;
+}
+.editbtncontainer {
+  display: flex;
+  gap: 8px;
+}

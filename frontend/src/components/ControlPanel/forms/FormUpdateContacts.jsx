@@ -4,7 +4,7 @@ import { CONTACTS_VALIDATION_RULES } from "../validation/validationRules.js";
 import { updateContacts } from "../api/updatecontacts.js";
 import { validateFormUpdateContacts } from "../validation/validationForms.js";
 
-import styles from "../ControlPanel.module.css";
+import styles from "../Forms.module.css";
 
 export default function FormUpdateContacts({ contacts }) {
   const [formValue, setFormValue] = useState(contacts);
@@ -53,48 +53,52 @@ export default function FormUpdateContacts({ contacts }) {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2 className={styles.caption}>Редактировать контакты</h2>
-      <h3>Основное поле</h3>
-      <p className={styles.pgph}>
-        {formValue.majorCaption.length} /{" "}
-        {CONTACTS_VALIDATION_RULES.majorCaptionMax}
-      </p>
-      <input
-        type="text"
-        className={styles.text}
-        maxLength={CONTACTS_VALIDATION_RULES.majorCaptionMax}
-        value={formValue.majorCaption}
-        onChange={(e) =>
-          setFormValue({ ...formValue, majorCaption: e.target.value })
-        }
-      />
-      <h3>Дополнительные поля</h3>
-      {formValue.minorCaptions.map((caption) => (
-        <div key={caption.id}>
-          <p className={styles.pgph}>
-            {caption.value.length} /{" "}
-            {CONTACTS_VALIDATION_RULES.minorCaptionsMax}
-          </p>
+      <h2 className={styles.title}>Edit contacts</h2>
+
+      <h3 className={styles.subtitle}>Main</h3>
+      <div className={styles.contactsitem}>
+        <label className={styles.label}>
+          {formValue.majorCaption.length} /{" "}
+          {CONTACTS_VALIDATION_RULES.majorCaptionMax}
           <input
             type="text"
-            className={styles.text}
-            maxLength={CONTACTS_VALIDATION_RULES.minorCaptionsMax}
-            value={caption.value}
-            disabled={isLoading}
+            className={styles.inputfield}
+            maxLength={CONTACTS_VALIDATION_RULES.majorCaptionMax}
+            value={formValue.majorCaption}
             onChange={(e) =>
-              setFormValue((prev) => ({
-                ...prev,
-                minorCaptions: prev.minorCaptions.map((item) =>
-                  item.id === caption.id
-                    ? { ...item, value: e.target.value }
-                    : item,
-                ),
-              }))
+              setFormValue({ ...formValue, majorCaption: e.target.value })
             }
           />
+        </label>
+      </div>
+      <h3 className={styles.subtitle}>Extra</h3>
+      
+      {formValue.minorCaptions.map((caption) => (
+        <div key={caption.id} className={styles.contactsitem}>
+          <label className={styles.label}>
+            {caption.value.length} /{" "}
+            {CONTACTS_VALIDATION_RULES.minorCaptionsMax}
+            <input
+              type="text"
+              className={styles.inputfield}
+              maxLength={CONTACTS_VALIDATION_RULES.minorCaptionsMax}
+              value={caption.value}
+              disabled={isLoading}
+              onChange={(e) =>
+                setFormValue((prev) => ({
+                  ...prev,
+                  minorCaptions: prev.minorCaptions.map((item) =>
+                    item.id === caption.id
+                      ? { ...item, value: e.target.value }
+                      : item,
+                  ),
+                }))
+              }
+            />
+          </label>
           <input
             type="button"
-            value="-"
+            value="delete"
             disabled={isLoading}
             className={[styles.button, styles.buttonred].join(" ")}
             onClick={() => deleteField(caption.id)}
@@ -104,14 +108,14 @@ export default function FormUpdateContacts({ contacts }) {
       <input
         type="button"
         className={styles.button}
-        value={"Добавить поле"}
+        value={"add field"}
         onClick={addField}
         disabled={isLoading}
       />
       <input
         type="submit"
         className={styles.button}
-        value={isLoading ? "Сохранение" : "Сохранить"}
+        value={isLoading ? "Loading..." : "Save"}
         disabled={isLoading}
       />
     </form>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-import styles from "../ControlPanel.module.css";
+import styles from "../Forms.module.css";
 
 export default function FormArrangeEmployees({
   employees,
@@ -53,35 +53,35 @@ export default function FormArrangeEmployees({
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2 className={styles.caption}>Сортировать сотрудников</h2>
+      <h2 className={styles.title}>Arrange employees</h2>
 
       {employeesOrder.map((employeeItem, index) => {
         return (
-          <div key={employeeItem.id}>
-            <p className={styles.pgph}>
+          <div key={employeeItem.id} className={styles.editemployeecontainer}>
+            <p className={styles.text}>
               {index + 1}. {employeeItem.name}
             </p>
-            <p
-              className={styles.pgph}
-              style={{ textDecoration: "underline", cursor: "pointer" }}
-              onClick={() => moveUp(index)}
-            >
-              move up
-            </p>
-            <p
-              className={styles.pgph}
-              style={{ textDecoration: "underline", cursor: "pointer" }}
-              onClick={() => moveDown(index)}
-            >
-              move down
-            </p>
+            <div className={styles.editbtncontainer}>
+              <input
+                type="button"
+                className={styles.button}
+                value={"move up"}
+                onClick={() => moveUp(index)}
+              />
+              <input
+                type="button"
+                className={styles.button}
+                value={"move down"}
+                onClick={() => moveDown(index)}
+              />
+            </div>
           </div>
         );
       })}
       <input
         type="submit"
         className={styles.button}
-        value="Сохранить"
+        value={isLoading ? "Loading..." : "Save"}
         disabled={isLoading}
       />
     </form>

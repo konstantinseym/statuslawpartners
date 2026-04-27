@@ -4,7 +4,7 @@ import { CAPTIONS_VALIDATION_RULES } from "../validation/validationRules.js";
 import { updateCaptions } from "../api/updatecaptions.js";
 import { validateFormUpdateCaptions } from "../validation/validationForms.js";
 
-import styles from "../ControlPanel.module.css";
+import styles from "../Forms.module.css";
 
 export default function FormUpdateCaptions({ captions }) {
   const [formValue, setFormValue] = useState(captions);
@@ -46,85 +46,85 @@ export default function FormUpdateCaptions({ captions }) {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2 className={styles.caption}>Редактировать заголовки</h2>
-      <label className={styles.formlabel}>
-        Заголовок ({formValue.heroMajor.length} /{" "}
+      <h2 className={styles.title}>Edit captions</h2>
+      <label className={styles.label}>
+        Title ({formValue.heroMajor.length} /{" "}
         {CAPTIONS_VALIDATION_RULES.heroMajorMax})
         <input
           type="text"
           name="heroMajor"
-          className={styles.text}
-          placeholder="Заголовок"
+          className={styles.inputfield}
+          placeholder="Title"
           maxLength={CAPTIONS_VALIDATION_RULES.heroMajorMax}
           value={formValue.heroMajor}
           onChange={handleInputChange}
           disabled={isLoading}
         />
       </label>
-      <label className={styles.formlabel}>
-        Подзаголовок ({formValue.heroMinor.length} /{" "}
+      <label className={styles.label}>
+        Subtitle ({formValue.heroMinor.length} /{" "}
         {CAPTIONS_VALIDATION_RULES.heroMinorMax})
         <input
           type="text"
           name="heroMinor"
-          className={styles.text}
-          placeholder="Подзаголовок"
+          className={styles.inputfield}
+          placeholder="Subtitle"
           maxLength={CAPTIONS_VALIDATION_RULES.heroMinorMax}
           value={formValue.heroMinor}
           onChange={handleInputChange}
           disabled={isLoading}
         />
       </label>
-      <label className={styles.formlabel}>
-        Публикации ({formValue.newsCaption.length} /{" "}
+      <label className={styles.label}>
+        Announcements ({formValue.newsCaption.length} /{" "}
         {CAPTIONS_VALIDATION_RULES.newsCaptionMax})
         <input
           type="text"
           name="newsCaption"
-          className={styles.text}
-          placeholder="Публикации"
+          className={styles.inputfield}
+          placeholder="Announcements"
           maxLength={CAPTIONS_VALIDATION_RULES.newsCaptionMax}
           value={formValue.newsCaption}
           onChange={handleInputChange}
           disabled={isLoading}
         />
       </label>
-      <label className={styles.formlabel}>
-        Сотрудники ({formValue.employeesCaption.length} /{" "}
+      <label className={styles.label}>
+        Employees ({formValue.employeesCaption.length} /{" "}
         {CAPTIONS_VALIDATION_RULES.employeesCaptionMax})
         <input
           type="text"
           name="employeesCaption"
-          className={styles.text}
-          placeholder="Сотрудники"
+          className={styles.inputfield}
+          placeholder="Employees"
           maxLength={CAPTIONS_VALIDATION_RULES.employeesCaptionMax}
           value={formValue.employeesCaption}
           onChange={handleInputChange}
           disabled={isLoading}
         />
       </label>
-      <label className={styles.formlabel}>
-        Реквизиты ({formValue.detailsCaption.length} /{" "}
+      <label className={styles.label}>
+        Details ({formValue.detailsCaption.length} /{" "}
         {CAPTIONS_VALIDATION_RULES.detailsCaptionMax})
         <input
           type="text"
           name="detailsCaption"
-          className={styles.text}
-          placeholder="Реквизиты"
+          className={styles.inputfield}
+          placeholder="Details"
           maxLength={CAPTIONS_VALIDATION_RULES.detailsCaptionMax}
           value={formValue.detailsCaption}
           onChange={handleInputChange}
           disabled={isLoading}
         />
       </label>
-      <label className={styles.formlabel}>
-        Контакты ({formValue.contactsCaption.length} /{" "}
+      <label className={styles.label}>
+        Contacts ({formValue.contactsCaption.length} /{" "}
         {CAPTIONS_VALIDATION_RULES.contactsCaptionMax})
         <input
           type="text"
           name="contactsCaption"
-          className={styles.text}
-          placeholder="Контакты"
+          className={styles.inputfield}
+          placeholder="Contacts"
           maxLength={CAPTIONS_VALIDATION_RULES.contactsCaptionMax}
           value={formValue.contactsCaption}
           onChange={handleInputChange}
@@ -134,7 +134,7 @@ export default function FormUpdateCaptions({ captions }) {
       <input
         type="submit"
         className={styles.button}
-        value={isLoading ? "Сохранение" : "Сохранить"}
+        value={isLoading ? "Loading..." : "Save"}
         disabled={isLoading}
       />
     </form>

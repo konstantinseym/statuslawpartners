@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-import styles from "../ControlPanel.module.css";
+import styles from "../Forms.module.css";
 
 export default function FormUpdatePolicy() {
   const [file, setFile] = useState(null);
@@ -46,22 +46,20 @@ export default function FormUpdatePolicy() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2 className={styles.caption}>Загрузить файл для подвала</h2>
-
-      <label className={styles.fileupload}>
+      <h2 className={styles.title}>Upload Privacy Policy file</h2>
+      <label className={styles.file}>
         <input
           type="file"
-          className={styles.file}
           accept="application/pdf"
           onChange={handleFileChange}
         />
-        <p className={styles.pgph}>{file ? file.name : "Загрузить файл"}</p>
+        <p className={styles.text}>{file ? file.name : "upload file"}</p>
       </label>
-      <p className={styles.pgph}>Максимальный размер файла: 10МБ (PDF)</p>
+      <p className={styles.text}>Max file size 10MB (PDF)</p>
       <input
         type="submit"
         className={styles.button}
-        value="Отправить"
+        value={isLoading ? "Loading..." : "Upload"}
         disabled={isLoading}
       />
     </form>

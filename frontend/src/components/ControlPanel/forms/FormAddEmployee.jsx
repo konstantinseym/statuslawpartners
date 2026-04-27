@@ -1,6 +1,7 @@
-import styles from "../ControlPanel.module.css";
 import { useState } from "react";
 import axios from "axios";
+
+import styles from "../Forms.module.css";
 
 export default function FormAddEmployee({ handleAddEmployee }) {
   const [file, setFile] = useState(null);
@@ -57,48 +58,59 @@ export default function FormAddEmployee({ handleAddEmployee }) {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2 className={styles.caption}>Добавить сотрудника</h2>
-      <p className={styles.pgph}>{formValues.name.length} / 128</p>
-      <input
-        type="text"
-        className={styles.text}
-        placeholder="Ф.И.О"
-        maxLength={128}
-        value={formValues.name}
-        onChange={(e) => setFormValues({ ...formValues, name: e.target.value })}
-      />
-      <p className={styles.pgph}>{formValues.role.length} / 128</p>
-      <input
-        type="text"
-        className={styles.text}
-        placeholder="Должность"
-        maxLength={128}
-        value={formValues.role}
-        onChange={(e) => setFormValues({ ...formValues, role: e.target.value })}
-      />
-      <p className={styles.pgph}>{formValues.alt.length} / 128</p>
-      <input
-        type="text"
-        className={styles.text}
-        placeholder="Подпись под фото"
-        maxLength={128}
-        value={formValues.alt}
-        onChange={(e) => setFormValues({ ...formValues, alt: e.target.value })}
-      />
-      <label className={styles.fileupload}>
+      <h2 className={styles.title}>Add employee</h2>
+      <label className={styles.label}>
+        {formValues.name.length} / 128
+        <input
+          type="text"
+          className={styles.inputfield}
+          placeholder="Name"
+          maxLength={128}
+          value={formValues.name}
+          onChange={(e) =>
+            setFormValues({ ...formValues, name: e.target.value })
+          }
+        />
+      </label>
+      <label className={styles.label}>
+        {formValues.role.length} / 128
+        <input
+          type="text"
+          className={styles.inputfield}
+          placeholder="Post"
+          maxLength={128}
+          value={formValues.role}
+          onChange={(e) =>
+            setFormValues({ ...formValues, role: e.target.value })
+          }
+        />
+      </label>
+      <label className={styles.label}>
+        {formValues.alt.length} / 128
+        <input
+          type="text"
+          className={styles.inputfield}
+          placeholder="Image alt"
+          maxLength={128}
+          value={formValues.alt}
+          onChange={(e) =>
+            setFormValues({ ...formValues, alt: e.target.value })
+          }
+        />
+      </label>
+      <label className={styles.file}>
         <input
           type="file"
-          className={styles.file}
           accept="image/png, image/jpeg"
           onChange={handleFileChange}
         />
-        <p className={styles.pgph}>{file ? file.name : "Загрузить фото"}</p>
+        <p className={styles.text}>{file ? file.name : "upload photo"}</p>
       </label>
-      <p className={styles.pgph}>Максимальный размер файла: 10МБ (JPG / PNG)</p>
+      <p className={styles.text}>Max file size 10MB (JPG / PNG)</p>
       <input
         type="submit"
         className={styles.button}
-        value="Добавить"
+        value={isLoading ? "Loading..." : "Add"}
         disabled={isLoading}
       />
     </form>

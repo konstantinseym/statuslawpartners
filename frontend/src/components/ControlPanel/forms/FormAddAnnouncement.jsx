@@ -4,7 +4,7 @@ import { addAnnouncement } from "../api/addannouncement.js";
 import { ANNOUNCEMENT_VALIDATION_RULES } from "../validation/validationRules.js";
 import { validateFormAddAnnouncement } from "../validation/validationForms.js";
 
-import styles from "../ControlPanel.module.css";
+import styles from "../Forms.module.css";
 
 const INITIAL_FORM_STATE = {
   caption: "",
@@ -41,7 +41,7 @@ export default function FormAddAnnouncement({ handleAddAnnouncement }) {
       handleAddAnnouncement();
     } catch (err) {
       console.log(err);
-      alert("Ошибка");
+      alert("Error");
     } finally {
       setIsLoading(false);
     }
@@ -49,15 +49,15 @@ export default function FormAddAnnouncement({ handleAddAnnouncement }) {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2 className={styles.caption}>Добавить объявление</h2>
-      <p className={styles.pgph}>
+      <h2 className={styles.title}>Add announcement</h2>
+      <p className={styles.text}>
         {formValue.caption.length} / {ANNOUNCEMENT_VALIDATION_RULES.captionMax}
       </p>
       <input
         type="text"
         name="caption"
-        className={styles.text}
-        placeholder="Заголовок"
+        className={styles.inputfield}
+        placeholder="Title"
         maxLength={ANNOUNCEMENT_VALIDATION_RULES.captionMax}
         value={formValue.caption}
         onChange={handleInputChange}
@@ -65,8 +65,8 @@ export default function FormAddAnnouncement({ handleAddAnnouncement }) {
       />
       <textarea
         name="content"
-        className={styles.textarea}
-        placeholder="Текст"
+        className={styles.inputtextarea}
+        placeholder="Text"
         maxLength={ANNOUNCEMENT_VALIDATION_RULES.contentMax}
         value={formValue.content}
         onChange={handleInputChange}
@@ -75,7 +75,7 @@ export default function FormAddAnnouncement({ handleAddAnnouncement }) {
       <input
         type="submit"
         className={styles.button}
-        value={isLoading ? "Добавление" : "Добавить"}
+        value={isLoading ? "Loading..." : "Post"}
         disabled={isLoading}
       />
     </form>

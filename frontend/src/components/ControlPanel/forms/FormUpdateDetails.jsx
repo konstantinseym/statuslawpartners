@@ -4,7 +4,7 @@ import { DETAILS_VALIDATION_RULES } from "../validation/validationRules";
 import { updateDetails } from "../api/updatedetails";
 import { validateFormUpdateDetails } from "../validation/validationForms";
 
-import styles from "../ControlPanel.module.css";
+import styles from "../Forms.module.css";
 
 export default function FormUpdateDetails({ details }) {
   const [formValue, setFormValue] = useState(details);
@@ -50,23 +50,23 @@ export default function FormUpdateDetails({ details }) {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2 className={styles.caption}>Редактировать реквизиты</h2>
+      <h2 className={styles.title}>Edit details</h2>
       {formValue.map((string) => (
-        <div key={string.id}>
-          <p className={styles.pgph}>
+        <div key={string.id} className={styles.detailsitem}>
+          <label className={styles.label}>
             {string.value.length} / {DETAILS_VALIDATION_RULES.stringMax}
-          </p>
-          <input
-            maxLength={DETAILS_VALIDATION_RULES.stringMax}
-            value={string.value}
-            onChange={(e) => handleInputChange(string.id, e.target.value)}
-            type="text"
-            className={styles.text}
-            disabled={isLoading}
-          />
+            <input
+              maxLength={DETAILS_VALIDATION_RULES.stringMax}
+              value={string.value}
+              onChange={(e) => handleInputChange(string.id, e.target.value)}
+              type="text"
+              className={styles.inputfield}
+              disabled={isLoading}
+            />
+          </label>
           <input
             type="button"
-            value="-"
+            value="delete"
             className={[styles.button, styles.buttonred].join(" ")}
             onClick={() => deleteField(string.id)}
             disabled={isLoading}
@@ -76,14 +76,14 @@ export default function FormUpdateDetails({ details }) {
       <input
         type="button"
         className={styles.button}
-        value={"Добавить поле"}
+        value={"add field"}
         onClick={addField}
         disabled={isLoading}
       />
       <input
         type="submit"
         className={styles.button}
-        value={"Сохранить"}
+        value={"Save"}
         disabled={isLoading}
       />
     </form>

@@ -36,28 +36,54 @@ export default function ControlPanel() {
   }, []);
 
   return appData ? (
-    <main className={styles.maincontainer}>
-      <FormAddAnnouncement handleAddAnnouncement={refreshPanel} />
-      <FormDeleteAnnouncement
-        news={appData.news}
-        handleDeleteAnnouncement={refreshPanel}
-      />
-      <FormUpdateCaptions captions={appData.captions} />
-      <FormUpdateDetails details={appData.detailsBlock} />
-      <FormUpdateContacts contacts={appData.contactsBlock} />
-      <FormUpdateFooterLink link={appData.footerLink} />
-      <FormAddEmployee handleAddEmployee={refreshPanel} />
-      <FormArrangeEmployees
-        employees={appData.employees}
-        handleArrangeEmployees={refreshPanel}
-      />
-      <FormDeleteEmployee
-        employees={appData.employees}
-        handleDeleteEmployee={refreshPanel}
-      />
-      <FormUpdatePolicy />
-      <FormUpdateHeroImage />
-    </main>
+    <div className={styles.controlpanel}>
+      <aside className={styles.navpanel}>
+        <nav>
+          <ul className={styles.navlist}>
+            <li>
+              <button className={styles.btn}>News</button>
+            </li>
+            <li>
+              <button className={styles.btn}>Employees</button>
+            </li>
+            <li>
+              <button className={styles.btn}>Details</button>
+            </li>
+            <li>
+              <button className={styles.btn}>Contacts</button>
+            </li>
+            <li>
+              <button className={styles.btn}>Files</button>
+            </li>
+            <li>
+              <button className={styles.btn}>Captions</button>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+      <main className={styles.formpanel}>
+        <FormAddAnnouncement handleAddAnnouncement={refreshPanel} />
+        <FormDeleteAnnouncement
+          news={appData.news}
+          handleDeleteAnnouncement={refreshPanel}
+        />
+        <FormUpdateCaptions captions={appData.captions} />
+        <FormUpdateDetails details={appData.detailsBlock} />
+        <FormUpdateContacts contacts={appData.contactsBlock} />
+        <FormUpdateFooterLink link={appData.footerLink} />
+        <FormAddEmployee handleAddEmployee={refreshPanel} />
+        <FormArrangeEmployees
+          employees={appData.employees}
+          handleArrangeEmployees={refreshPanel}
+        />
+        <FormDeleteEmployee
+          employees={appData.employees}
+          handleDeleteEmployee={refreshPanel}
+        />
+        <FormUpdateHeroImage />
+        <FormUpdatePolicy />
+      </main>
+    </div>
   ) : (
     <></>
   );

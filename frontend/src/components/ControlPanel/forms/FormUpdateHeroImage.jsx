@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-import styles from "../ControlPanel.module.css";
+import styles from "../Forms.module.css";
 
 export default function FormUpdateHeroImage() {
   const [file, setFile] = useState(null);
@@ -46,23 +46,21 @@ export default function FormUpdateHeroImage() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2 className={styles.caption}>Загрузить фон HERO</h2>
-
-      <label className={styles.fileupload}>
+      <h2 className={styles.title}>Upload HERO background</h2>
+      <label className={styles.file}>
         <input
           type="file"
-          className={styles.file}
           accept="image/png"
           onChange={handleFileChange}
         />
-        <p className={styles.pgph}>{file ? file.name : "Загрузить файл"}</p>
+        <p className={styles.text}>{file ? file.name : "upload file"}</p>
       </label>
-      <p className={styles.pgph}>Максимальный размер файла: 10МБ (PNG)</p>
-      <p className={styles.pgph}>Рекомендуемое разрешение: 1600 x 900 px</p>
+      <p className={styles.text}>Max file size 10MB (PNG)</p>
+      <p className={styles.text}>Recommended resolution: 1600 x 900 px</p>
       <input
         type="submit"
         className={styles.button}
-        value="Отправить"
+        value={isLoading ? "Loading..." : "Upload"}
         disabled={isLoading}
       />
     </form>

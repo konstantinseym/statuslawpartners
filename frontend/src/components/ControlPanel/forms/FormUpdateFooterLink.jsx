@@ -4,7 +4,7 @@ import { validateFormUpdateFooterLink } from "../validation/validationForms.js";
 import { updateFooterLink } from "../api/updatefooterlink.js";
 import { FOOTERLINK_VALIDATION_RULES } from "../validation/validationRules.js";
 
-import styles from "../ControlPanel.module.css";
+import styles from "../Forms.module.css";
 
 export default function FormUpdateFooterLink({ link }) {
   const [formValue, setFormValue] = useState(link);
@@ -40,15 +40,14 @@ export default function FormUpdateFooterLink({ link }) {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2 className={styles.caption}>Редактировать ссылку в подвале</h2>
-      <label className={styles.formlabel}>
-        Текст ({formValue.caption.length} /
-        {FOOTERLINK_VALIDATION_RULES.captionMax})
+      <h2 className={styles.title}>Edit footer link</h2>
+      <label className={styles.label}>
+        {formValue.caption.length} /{FOOTERLINK_VALIDATION_RULES.captionMax}
         <input
           type="text"
           name="caption"
-          className={styles.text}
-          placeholder="Текст"
+          className={styles.inputfield}
+          placeholder="Text"
           maxLength={FOOTERLINK_VALIDATION_RULES.captionMax}
           value={formValue.caption}
           onChange={handleInputChange}
@@ -58,7 +57,7 @@ export default function FormUpdateFooterLink({ link }) {
       <input
         type="submit"
         className={styles.button}
-        value="Сохранить"
+        value={isLoading ? "Loading..." : "Save"}
         disabled={isLoading}
       />
     </form>

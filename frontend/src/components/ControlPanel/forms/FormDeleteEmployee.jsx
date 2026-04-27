@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-import styles from "../ControlPanel.module.css";
+import styles from "../Forms.module.css";
 
 export default function FormDeleteEmployee({
   employees,
@@ -33,28 +33,21 @@ export default function FormDeleteEmployee({
 
   return (
     <form className={styles.form}>
-      <h2 className={styles.caption}>Удалить сотрудника</h2>
+      <h2 className={styles.title}>Delete employee</h2>
       {employees.map((employeesItem) => {
         const isCurrentItemDeleting = deletingId === employeesItem.id;
         const isAnyItemDeleting = deletingId !== null;
 
         return (
-          <div
-            key={employeesItem.id}
-            className={styles.flexcontainer}
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
+          <div key={employeesItem.id} className={styles.editemployeecontainer}>
+            <p className={styles.text}>{employeesItem.name}</p>
             <input
               className={[styles.button, styles.buttonred].join(" ")}
               type="button"
-              value={isCurrentItemDeleting ? "..." : "-"}
+              value={isCurrentItemDeleting ? "..." : "delete"}
               onClick={() => handleDelete(employeesItem.id)}
               disabled={isAnyItemDeleting}
             />
-            <p className={styles.pgph}>{employeesItem.name}</p>
           </div>
         );
       })}
