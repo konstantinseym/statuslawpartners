@@ -54,7 +54,8 @@ export default function FormArrangeEmployees({
       await arrangeEmployees(normalizedOrder);
       handleArrangeEmployees();
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      alert("Something went wrong");
     } finally {
       setIsLoading(false);
     }

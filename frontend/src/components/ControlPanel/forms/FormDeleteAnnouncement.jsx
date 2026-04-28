@@ -21,8 +21,8 @@ export default function FormDeleteAnnouncement({
       await deleteAnnouncement(id);
       handleDeleteAnnouncement?.();
     } catch (err) {
-      console.log(err);
-      alert("Ошибка");
+      console.error(err);
+      alert("Something went wrong");
     } finally {
       setDeletingId(null);
     }

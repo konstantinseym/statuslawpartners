@@ -44,8 +44,8 @@ export default function FormUpdateContacts({ contacts }) {
       setisLoading(true);
       await updateContacts(normalizedData);
     } catch (err) {
-      console.log(err);
-      alert("Ошибка");
+      console.error(err);
+      alert("Something went wrong");
     } finally {
       setisLoading(false);
     }
@@ -72,7 +72,7 @@ export default function FormUpdateContacts({ contacts }) {
         </label>
       </div>
       <h3 className={styles.subtitle}>Extra</h3>
-      
+
       {formValue.minorCaptions.map((caption) => (
         <div key={caption.id} className={styles.contactsitem}>
           <label className={styles.label}>

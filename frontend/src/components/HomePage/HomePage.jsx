@@ -15,7 +15,8 @@ export default function HomePage() {
         const res = await axios.get("/api/app-data");
         setAppData(res.data);
       } catch (err) {
-        console.log(err);
+        console.error(err);
+        alert("Something went wrong");
       }
     }
 

@@ -62,7 +62,8 @@ export default function FormAddEmployee({ handleAddEmployee }) {
       setFormValues(INITIAL_FORM_STATE);
       handleAddEmployee();
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      alert("Something went wrong");
     } finally {
       setIsLoading(false);
     }

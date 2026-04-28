@@ -39,7 +39,8 @@ export default function FormUpdateHeroImage() {
       await updateHeroImage(formData);
       setFile(null);
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      alert("Something went wrong");
     } finally {
       setIsLoading(false);
     }

@@ -20,8 +20,8 @@ export default function FormDeleteEmployee({
       await deleteEmployee(id);
       handleDeleteEmployee?.();
     } catch (err) {
-      console.log(err);
-      alert("Ошибка");
+      console.error(err);
+      alert("Something went wrong");
     } finally {
       setDeletingId(null);
     }

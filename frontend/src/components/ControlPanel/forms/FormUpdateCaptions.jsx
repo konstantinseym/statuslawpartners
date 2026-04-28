@@ -37,8 +37,8 @@ export default function FormUpdateCaptions({ captions }) {
       setIsLoading(true);
       await updateCaptions(normalizedData);
     } catch (err) {
-      console.log(err);
-      alert("Ошибка");
+      console.error(err);
+      alert("Something went wrong");
     } finally {
       setIsLoading(false);
     }

@@ -41,8 +41,8 @@ export default function FormUpdateDetails({ details }) {
       setIsLoading(true);
       await updateDetails(formValue);
     } catch (err) {
-      console.log(err);
-      alert("Ошибка");
+      console.error(err);
+      alert("Something went wrong");
     } finally {
       setIsLoading(false);
     }

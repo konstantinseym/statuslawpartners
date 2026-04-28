@@ -40,8 +40,8 @@ export default function FormAddAnnouncement({ handleAddAnnouncement }) {
       setFormValue(INITIAL_FORM_STATE);
       handleAddAnnouncement();
     } catch (err) {
-      console.log(err);
-      alert("Error");
+      console.error(err);
+      alert("Something went wrong");
     } finally {
       setIsLoading(false);
     }

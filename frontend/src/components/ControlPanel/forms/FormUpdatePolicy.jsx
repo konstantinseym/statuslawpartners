@@ -39,7 +39,8 @@ export default function FormUpdatePolicy() {
       await updatePolicy(formData);
       setFile(null);
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      alert("Something went wrong");
     } finally {
       setIsLoading(false);
     }
